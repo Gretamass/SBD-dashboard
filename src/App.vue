@@ -8,6 +8,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import Sidebar from '@/components/Sidebar.vue';
+import { useMainStore } from '@/stores/main/mainStore';
+
+const { initApp } = useMainStore();
+
+initApp();
 </script>
 
 <style lang="scss">
@@ -19,7 +24,7 @@ html {
 
 body {
     font-family: 'Euclid Circular A', sans-serif;
-    background-color: rgb(var(--background-color));
+    background-color: rgb(var(--primary-background-color));
     color: rgb(var(--text-color));
 }
 
@@ -35,8 +40,6 @@ body {
 
     &__content {
         flex: 1;
-
-        background-color: rgb(var(--primary-background-color));
     }
 }
 </style>

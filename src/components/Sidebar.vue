@@ -99,6 +99,7 @@ function toggleSidebar(): void {
     flex-direction: column;
 
     margin: auto 0;
+    padding-bottom: 60px;
 
     &__item {
         display: flex;
