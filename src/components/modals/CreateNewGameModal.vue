@@ -31,7 +31,7 @@
                 </div>
                 <div class="form__item item">
                     <div class="item__title">DATE</div>
-                    <!--  TODO: add calendar date picker -->
+                    <DatePicker v-model="date" />
                 </div>
                 <div class="form__item item">
                     <div class="item__title">SCOUTING TYPE</div>
@@ -69,6 +69,8 @@ import { computed, ref } from 'vue';
 import { useMainStore } from '@/stores/main/mainStore';
 import { storeToRefs } from 'pinia';
 import { ScoutingMode, ScoutingType } from '@/stores/main/models/enumerators';
+import DatePicker from '@/components/ui/DatePicker.vue';
+import { DateTime } from 'luxon';
 
 const {
     tournamentUuids,
@@ -82,6 +84,7 @@ const {
 const league = ref<string>('');
 const spectatingTeam = ref<string>('');
 const opponentTeam = ref<string>('');
+const date = ref<string>(DateTime.now().toMillis());
 const scoutingType = ref<ScoutingType>(ScoutingType.ATTACK_AND_DEFENCE);
 const scoutingMode = ref<ScoutingMode>(ScoutingMode.BASIC);
 

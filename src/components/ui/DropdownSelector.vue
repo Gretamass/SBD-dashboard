@@ -97,7 +97,7 @@ function selectOption(uuid: string): void {
     z-index: 1;
 
     width: 100%;
-    max-height: 150px;
+    max-height: 250px;
     overflow: auto;
 
     background-color: rgb(var(--secondary-background-color-item));
