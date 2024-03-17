@@ -5,7 +5,7 @@
                 <div class="header__title">
                     <slot name="header" />
                 </div>
-                <XMarkIcon />
+                <XMarkIcon @click="emit('close')" />
             </div>
             <div class="modal__content content">
                 <slot name="content" />
@@ -19,6 +19,8 @@
 
 <script setup lang="ts">
 import XMarkIcon from '@/components/ui/icons/XMarkIcon.vue';
+
+const emit = defineEmits(['close']);
 </script>
 
 <style scoped lang="scss">

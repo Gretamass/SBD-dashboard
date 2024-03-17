@@ -30,6 +30,7 @@
                     'navigation__item--expanded': isSidebarExpanded,
                     'navigation__item--selected': route.name === Route.NEW_MATCH
                 }"
+                @click="openCreateGameModal"
             >
                 <div class="navigation__icon">
                     <fa-icon :icon="['fas', 'plus']" />
@@ -38,7 +39,7 @@
             </div>
         </div>
     </div>
-    <CreateNewGameModal />
+    <CreateNewGameModal v-if="showCreateGameModal" @close="closeCreateGameModal" />
 </template>
 
 <script setup lang="ts">
@@ -51,8 +52,18 @@ const isSidebarExpanded = ref<boolean>(false);
 
 const route = useRoute();
 
+const showCreateGameModal = ref<boolean>(false);
+
 function toggleSidebar(): void {
     isSidebarExpanded.value = !isSidebarExpanded.value;
+}
+
+function openCreateGameModal(): void {
+    showCreateGameModal.value = true;
+}
+
+function closeCreateGameModal(): void {
+    showCreateGameModal.value = false;
 }
 </script>
 

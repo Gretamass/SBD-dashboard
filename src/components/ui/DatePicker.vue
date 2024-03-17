@@ -17,7 +17,7 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { DateTime } from 'luxon';
 
-const date = defineModel<string>({ required: true });
+const date = defineModel<number>({ required: true });
 
 function format(date: Date | string): string {
     return DateTime.fromJSDate(new Date(date)).toLocaleString(DateTime.DATE_FULL);

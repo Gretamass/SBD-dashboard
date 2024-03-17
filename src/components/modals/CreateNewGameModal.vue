@@ -1,5 +1,5 @@
 <template>
-    <BaseModal>
+    <BaseModal @close="emit('close')">
         <template #header>Create A New Game</template>
         <template #content>
             <div class="form">
@@ -81,10 +81,12 @@ const {
     getScoutingModeTranslation
 } = storeToRefs(useMainStore());
 
+const emit = defineEmits(['close']);
+
 const league = ref<string>('');
 const spectatingTeam = ref<string>('');
 const opponentTeam = ref<string>('');
-const date = ref<string>(DateTime.now().toMillis());
+const date = ref<number>(DateTime.now().toMillis());
 const scoutingType = ref<ScoutingType>(ScoutingType.ATTACK_AND_DEFENCE);
 const scoutingMode = ref<ScoutingMode>(ScoutingMode.BASIC);
 

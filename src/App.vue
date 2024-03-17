@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import Sidebar from '@/components/Sidebar.vue';
+import Sidebar from '@/components/PageSidebar.vue';
 import { useMainStore } from '@/stores/main/mainStore';
 
 const { initApp } = useMainStore();
