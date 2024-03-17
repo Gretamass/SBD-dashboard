@@ -1,7 +1,10 @@
 <template>
     <div class="games">
         <div class="games__header header">
-            <div class="header__title">Previous Games ({{ loggedGamesCount }})</div>
+            <div class="header__title">
+                <div class="header__count">{{ loggedGamesCount }}</div>
+                Previous Games
+            </div>
             <!--    TODO: add view all previous games button    -->
             <!--    TODO: add search    -->
         </div>
@@ -14,12 +17,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useMainStore } from '@/stores/main/mainStore';
-import PreviousGameItem from '@/components/dashboard/PreviousGameItem.vue';
+import PreviousGameItem from '@/components/dashboard/previous-games/PreviousGameItem.vue';
 
 const { loggedGamesCount, latestGamesList } = storeToRefs(useMainStore());
 </script>
 
 <style scoped lang="scss">
+@use '@/assets' as *;
+
 .games {
     display: flex;
     flex-direction: column;
@@ -37,12 +42,34 @@ const { loggedGamesCount, latestGamesList } = storeToRefs(useMainStore());
 .header {
     display: flex;
     align-items: center;
+    width: 100%;
 
     margin-bottom: 12px;
 
     &__title {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        width: 100%;
+
         font-size: 1.6rem;
         color: rgb(var(--secondary-background-color));
+    }
+
+    &__count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 24px;
+        width: 24px;
+
+        background-color: rgb(var(--secondary-background-color-item));
+        border-radius: 60px;
+
+        font-size: 1.2rem;
+        color: rgb(var(--primary-background-color));
     }
 }
 </style>

@@ -149,3 +149,8 @@ input {
 input:focus-visible {
     outline: none;
 }
+
+button {
+    font-family: inherit;
+    border: none;
+}

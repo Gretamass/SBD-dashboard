@@ -1,11 +1,13 @@
 <template>
     <div class="dashboard">
         <PreviousGames />
+        <PointsPerTournament />
     </div>
 </template>
 
 <script setup lang="ts">
-import PreviousGames from '@/components/dashboard/PreviousGames.vue';
+import PreviousGames from '@/components/dashboard/previous-games/PreviousGames.vue';
+import PointsPerTournament from '@/components/dashboard/points-per-tournament/PointsPerTournament.vue';
 </script>
 
 <style scoped lang="scss">
@@ -16,5 +18,7 @@ import PreviousGames from '@/components/dashboard/PreviousGames.vue';
     flex-direction: column;
 
     margin: 18px;
+
+    gap: 12px;
 }
 </style>

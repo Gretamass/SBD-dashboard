@@ -3,12 +3,33 @@ import type { GamePreview } from '@/stores/main/models/interfaces';
 import { useMainStore } from '@/stores/main/mainStore';
 import { DateTime } from 'luxon';
 
+export interface GamePreviewInfo {
+    uuid: string;
+    isHomeCourt: boolean;
+    homeTeam: TeamInfo;
+    awayTeam: TeamInfo;
+    tournament: {
+        name: string;
+        uuid: string;
+    };
+    date: {
+        monthDay: string;
+        year: number;
+    };
+}
+
+export interface TeamInfo {
+    name: string;
+    uuid: string;
+    score: number;
+}
+
 export const useGamePreviewInfo = (gameData: GamePreview) => {
     const uuid = computed<string>(() => {
         return gameData.uuid;
     });
 
-    const isHomeCourt = computed<string>(() => {
+    const isHomeCourt = computed<boolean>(() => {
         return gameData.home_court;
     });
 
@@ -55,7 +76,7 @@ export const useGamePreviewInfo = (gameData: GamePreview) => {
         return `${month} ${day}`;
     });
 
-    const dateYear = computed<string>(() => {
+    const dateYear = computed<number>(() => {
         return date.value.year;
     });
 

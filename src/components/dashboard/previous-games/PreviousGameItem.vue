@@ -41,7 +41,7 @@ const { game } = useGamePreviewInfo(props.gameData);
 </script>
 
 <style scoped lang="scss">
-@use '@/assets' as *;
+@use '@/assets/index' as *;
 
 .game {
     display: flex;

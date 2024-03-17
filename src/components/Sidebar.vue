@@ -3,26 +3,53 @@
         <div class="sidebar__header header">
             <div class="header__button">
                 <fa-icon
-                    @click="toggleSidebar"
-                    class="header__icon"
                     :class="{ 'header__icon--rotate': !isSidebarExpanded }"
                     :icon="['fas', 'circle-chevron-left']"
+                    class="header__icon"
+                    @click="toggleSidebar"
                 />
             </div>
             <div class="header__title">Sports By Data</div>
         </div>
         <div class="sidebar__navigation navigation">
-            <div class="navigation__item navigation__item--selected">
-                <fa-icon class="navigation__icon" :icon="['fas', 'house']" />Dashboard
+            <div
+                class="navigation__item"
+                :class="{
+                    'navigation__item--expanded': isSidebarExpanded,
+                    'navigation__item--selected': route.name === Route.DASHBOARD
+                }"
+            >
+                <div class="navigation__icon">
+                    <fa-icon :icon="['fas', 'house']" />
+                </div>
+                <div v-if="isSidebarExpanded" class="navigation__item-text">Dashboard</div>
+            </div>
+            <div
+                class="navigation__item"
+                :class="{
+                    'navigation__item--expanded': isSidebarExpanded,
+                    'navigation__item--selected': route.name === Route.NEW_MATCH
+                }"
+            >
+                <div class="navigation__icon">
+                    <fa-icon :icon="['fas', 'plus']" />
+                </div>
+                <div v-if="isSidebarExpanded" class="navigation__item-text">Create New Match</div>
             </div>
         </div>
     </div>
+    <CreateNewGameModal />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { Route } from '@/router/models/enumerators';
+import CreateNewGameModal from '@/components/modals/CreateNewGameModal.vue';
 
 const isSidebarExpanded = ref<boolean>(false);
+
+const route = useRoute();
 
 function toggleSidebar(): void {
     isSidebarExpanded.value = !isSidebarExpanded.value;
@@ -97,37 +124,62 @@ function toggleSidebar(): void {
 .navigation {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+
+    padding-bottom: 60px;
 
     margin: auto 0;
-    padding-bottom: 60px;
 
     &__item {
         display: flex;
         align-items: center;
-        gap: 12px;
 
-        padding: 12px;
+        width: 42px;
+
+        white-space: nowrap;
+        background-color: rgb(var(--secondary-background-color-item));
+
         border-radius: 6px;
 
         overflow: hidden;
 
-        font-size: 1.4rem;
-
         cursor: pointer;
         transition: all 0.3s ease-in-out;
 
-        &--selected {
-            background-color: rgb(var(--accent-orange));
-            color: rgb(var(--secondary-background-color));
+        &--expanded {
+            width: 100%;
         }
 
         &:hover {
             background-color: rgb(var(--secondary-background-color-item-hover));
+
+            transform: scale(1.05);
+        }
+
+        &--selected {
+            background-color: rgb(var(--accent-orange));
+            color: rgb(var(--secondary-background-color));
+
+            &:hover {
+                background-color: rgb(var(--accent-orange));
+            }
         }
     }
 
     &__icon {
-        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+        width: 42px;
+
+        font-size: 1.7rem;
+    }
+
+    &__item-text {
+        font-size: 1.4rem;
+        width: 0;
     }
 }
 </style>

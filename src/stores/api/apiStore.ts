@@ -10,9 +10,9 @@ import axios from 'axios';
 export const useApiStore = defineStore('api', {
     state: (): ApiStoreState => ({ backendUrl: 'https://api.sportsbydata.com' }),
     actions: {
-        async fetchGamesPreviews(): Promise<GamePreviewsResponse> {
+        async fetchGamesPreviews(): Promise<GamePreviewsResponse[]> {
             const { organizationUuid } = useMainStore();
-            const { data } = await axios.get<GamePreviewsResponse>(
+            const { data } = await axios.get<GamePreviewsResponse[]>(
                 `${this.backendUrl}/organization/${organizationUuid}/game/preview`
             );
 
