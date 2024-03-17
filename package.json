@@ -20,6 +20,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@types/luxon": "^3.4.2",
     "@vuepic/vue-datepicker": "^8.2.0",
+    "@vueuse/core": "^10.9.0",
     "axios": "^1.6.7",
     "luxon": "^3.4.4",
     "pinia": "^2.1.7",

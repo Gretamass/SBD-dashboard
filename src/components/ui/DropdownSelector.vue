@@ -1,10 +1,14 @@
 <template>
-    <div class="selector" :class="{ 'selector--disabled': disabled }">
-        <div class="selector__selected" @click="toggleDropdown">
+    <div ref="selector" class="selector" :class="{ 'selector--disabled': disabled }">
+        <div
+            class="selector__selected"
+            :class="{ 'selector__selected--opened': showDropdown }"
+            @click="toggleDropdown"
+        >
             <div class="selector__selected-text">{{ textFormat(model) }}</div>
             <ChevronToggleIcon :up-chevron="showDropdown" />
         </div>
-        <div v-show="showDropdown" class="selector__dropdown dropdown">
+        <div class="selector__dropdown dropdown" :class="{ 'dropdown--opened': showDropdown }">
             <div
                 v-for="option in options"
                 :key="option"
@@ -20,6 +24,7 @@
 <script setup lang="ts">
 import ChevronToggleIcon from '@/components/ui/icons/ChevronToggleIcon.vue';
 import { type PropType, ref } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 defineProps({
     disabled: {
@@ -39,6 +44,9 @@ defineProps({
 const model = defineModel<string>({ required: true });
 
 const showDropdown = ref<boolean>(false);
+const selector = ref(null);
+
+onClickOutside(selector, () => closeDropdown());
 
 function toggleDropdown(): void {
     showDropdown.value = !showDropdown.value;
@@ -60,7 +68,6 @@ function selectOption(uuid: string): void {
 
 .selector {
     display: flex;
-
     position: relative;
 
     cursor: pointer;
@@ -84,6 +91,12 @@ function selectOption(uuid: string): void {
         padding: 0 12px;
 
         color: rgb(var(--secondary-background-color));
+
+        transition: all 0.3s ease;
+
+        &--opened {
+            border-radius: 6px 6px 0 0;
+        }
     }
 
     &__selected-text {
@@ -93,14 +106,21 @@ function selectOption(uuid: string): void {
 
 .dropdown {
     position: absolute;
-    top: 29px;
+    top: 30px;
     z-index: 1;
 
     width: 100%;
-    max-height: 250px;
+    max-height: 0;
     overflow: auto;
 
     background-color: rgb(var(--secondary-background-color-item));
+    border-radius: 0 0 6px 6px;
+
+    transition: all 0.3s ease-in-out;
+
+    &--opened {
+        max-height: 200px;
+    }
 
     &__item {
         display: flex;
