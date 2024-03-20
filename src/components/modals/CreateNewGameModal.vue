@@ -31,7 +31,7 @@
                 </div>
                 <div class="form__item item">
                     <div class="item__title">DATE</div>
-                    <DatePicker v-model="date" />
+                    <DatePicker v-model="date" class="border" />
                 </div>
                 <div class="form__item item">
                     <div class="item__title">SCOUTING TYPE</div>
@@ -119,5 +119,10 @@ const disableTeamSelector = computed<boolean>(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.border {
+    border: 1px solid rgb(var(--secondary-background-color-item-hover));
+    border-radius: 6px;
 }
 </style>

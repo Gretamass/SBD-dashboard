@@ -1,5 +1,5 @@
 <template>
-    <div class="modal__overlay">
+    <div class="modal__overlay" @click.self="emit('close')">
         <div class="modal">
             <div class="modal__header header">
                 <div class="header__title">
