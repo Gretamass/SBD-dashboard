@@ -15,6 +15,7 @@ export interface GamePreviewInfo {
     date: {
         monthDay: string;
         year: number;
+        full: string;
     };
 }
 
@@ -80,6 +81,10 @@ export const useGamePreviewInfo = (gameData: GamePreview) => {
         return date.value.year;
     });
 
+    const dateFull = computed<string>(() => {
+        return `${dateMonthDay.value} ${dateYear.value}`;
+    });
+
     function getTeamName(teamUuid: string): string {
         const { configuration } = useMainStore();
 
@@ -118,7 +123,8 @@ export const useGamePreviewInfo = (gameData: GamePreview) => {
             },
             date: {
                 monthDay: dateMonthDay.value,
-                year: dateYear.value
+                year: dateYear.value,
+                full: dateFull.value
             }
         };
     });

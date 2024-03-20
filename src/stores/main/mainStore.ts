@@ -37,6 +37,9 @@ export const useMainStore = defineStore('main', {
             return state.gamePreviews.length;
         },
         latestGamesList(state: MainStoreState): GamePreview[] {
+            return state.gamePreviews;
+        },
+        latestGamesListPreview(state: MainStoreState): GamePreview[] {
             return state.gamePreviews.splice(0, 6);
         },
         tournaments(state: MainStoreState): Tournament[] {

@@ -9,7 +9,11 @@
             <!--    TODO: add search    -->
         </div>
         <div class="games__list list">
-            <PreviousGameItem v-for="game in latestGamesList" :key="game.uuid" :game-data="game" />
+            <PreviousGameItem
+                v-for="game in latestGamesListPreview"
+                :key="game.uuid"
+                :game-data="game"
+            />
         </div>
     </div>
 </template>
@@ -19,7 +23,7 @@ import { storeToRefs } from 'pinia';
 import { useMainStore } from '@/stores/main/mainStore';
 import PreviousGameItem from '@/components/dashboard/previous-games/PreviousGameItem.vue';
 
-const { loggedGamesCount, latestGamesList } = storeToRefs(useMainStore());
+const { loggedGamesCount, latestGamesListPreview } = storeToRefs(useMainStore());
 </script>
 
 <style scoped lang="scss">

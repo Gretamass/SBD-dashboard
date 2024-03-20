@@ -6,9 +6,20 @@ import {
     faHouse,
     faPlus,
     faXmark,
-    faChevronUp
+    faChevronUp,
+    faChartBar,
+    faSearch
 } from '@fortawesome/free-solid-svg-icons';
 
 export default (): void => {
-    library.add(faChartLine, faCircleChevronLeft, faHouse, faPlus, faXmark, faChevronUp);
+    library.add(
+        faChartLine,
+        faCircleChevronLeft,
+        faHouse,
+        faPlus,
+        faXmark,
+        faChevronUp,
+        faChartBar,
+        faSearch
+    );
 };

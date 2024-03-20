@@ -18,11 +18,27 @@
                     'navigation__item--expanded': isSidebarExpanded,
                     'navigation__item--selected': route.name === Route.DASHBOARD
                 }"
+                @click="goToPage(Route.DASHBOARD)"
             >
                 <div class="navigation__icon">
                     <fa-icon :icon="['fas', 'house']" />
                 </div>
                 <div v-if="isSidebarExpanded" class="navigation__item-text">Dashboard</div>
+            </div>
+            <div
+                class="navigation__item"
+                :class="{
+                    'navigation__item--expanded': isSidebarExpanded,
+                    'navigation__item--selected': route.name === Route.GAMES_LIST
+                }"
+                @click="goToPage(Route.GAMES_LIST)"
+            >
+                <div class="navigation__icon">
+                    <fa-icon :icon="['fas', 'chart-bar']" />
+                </div>
+                <div v-if="isSidebarExpanded" class="navigation__item-text">
+                    Previous Games List
+                </div>
             </div>
             <div
                 class="navigation__item"
@@ -47,6 +63,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { Route } from '@/router/models/enumerators';
 import CreateNewGameModal from '@/components/modals/CreateNewGameModal.vue';
+import router from '@/router';
 
 const isSidebarExpanded = ref<boolean>(false);
 
@@ -64,6 +81,10 @@ function openCreateGameModal(): void {
 
 function closeCreateGameModal(): void {
     showCreateGameModal.value = false;
+}
+
+function goToPage(routeName: Route): void {
+    router.push({ name: routeName });
 }
 </script>
 
@@ -137,10 +158,6 @@ function closeCreateGameModal(): void {
     flex-direction: column;
     justify-content: center;
     gap: 12px;
-
-    padding-bottom: 60px;
-
-    margin: auto 0;
 
     &__item {
         display: flex;

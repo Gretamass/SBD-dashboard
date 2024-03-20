@@ -1,7 +1,6 @@
 <template>
-    <div class="x-mark">
-        <fa-icon class="x-mark__icon" :icon="['fas', 'xmark']" />
-        <slot />
+    <div class="search">
+        <fa-icon class="search__icon" :icon="['fas', 'search']" />
     </div>
 </template>
 
@@ -10,21 +9,18 @@
 <style scoped lang="scss">
 @use '@/assets/index' as *;
 
-.x-mark {
+.search {
     display: flex;
     align-items: center;
     gap: 5px;
 
+    color: rgb(var(--secondary-background-color));
     font-size: 1.6rem;
 
     cursor: pointer;
 
     &__icon {
         transition: all 0.2s ease-in-out;
-    }
-
-    &:hover {
-        color: rgb(var(--system-red));
     }
 }
 </style>

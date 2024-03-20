@@ -23,7 +23,7 @@ html {
 }
 
 body {
-    font-family: 'Euclid Circular A', sans-serif;
+    font-family: i, sans-serif;
     background-color: rgb(var(--primary-background-color));
     color: rgb(var(--text-color));
 }
@@ -40,6 +40,8 @@ body {
 
     &__content {
         flex: 1;
+
+        overflow: scroll;
     }
 }
 </style>

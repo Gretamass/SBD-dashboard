@@ -17,7 +17,7 @@ import PointsPerTournament from '@/components/dashboard/points-per-tournament/Po
     display: flex;
     flex-direction: column;
 
-    margin: 18px;
+    padding: 18px;
 
     gap: 12px;
 }
